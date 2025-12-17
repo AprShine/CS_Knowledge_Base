@@ -3,3 +3,9 @@
 
 # python venv
 .venv/
+venv/
+
+.conda/
+
+# secret
+secret/
