@@ -15,34 +15,37 @@
 ![高松灯](https://i2.hdslb.com/bfs/archive/4c83534976e1d15db689da00bb712b6520ca7f0b.jpg@672w_378h_1c_!web-search-common-cover.avif)
 ## 命令
 
-## git clone
+### git clone
 
 ```shell
 git clone --depth 1 [remote url]
 
 git clone --single-branch -branch [branch name] [remote url]
 ```
-## git remote
+### git remote
 ```shell
 git remote -v
 
 git remote add [name] [url]
 
+# 修改 remote url
+git remote set-url [name] [new url]
 ```
-## git push
+### git push
 
 ```shell
 git push [remote name] [branch]
 ```
-## git fetch
+### git fetch
 
 + 从所有远程仓库（默认主要是 origin）下载最新的提交、分支和标签。
 + 不会自动合并到你的本地分支，只是更新本地“远程跟踪分支”。
+
 ```shell
 git fetch [remote name] [branch]
 ```
 
-## git checkout
+### git checkout
 
 ```shell
 # 修改分支名称
@@ -50,12 +53,26 @@ git checkout -m [new branch name]
 
 # 若没有对应分支则创建
 git checkout -b [new branch name] 
+
+# 丢弃单文件修改
+git checkout -- [filename]
 ```
-## git pull
+
+### git switch
+
++ 专门用于切换分支，相对 checkout 更加安全
++ 不支持丢弃工作区修改
+```shell
+git switch feature/login
+
+# 创建+切换
+git switch -c feature/logout
+```
+### git pull
 
 + 与 fetch 不同，会自动 merge 到当前 head 指向的分支
 + 如果存在冲突，需要进行处理
-## git log
+### git log
 
 ```shell
 git log --graph --oneline [branch]
@@ -63,7 +80,7 @@ git log --graph --oneline [branch]
 git log --name-status -- [filename/foldername]
 ```
 
-## git commit 规范
+### git commit 规范
 
 ```shell
 <类型>([可选的作用域]): <描述> 
@@ -73,7 +90,7 @@ git log --name-status -- [filename/foldername]
 [可选的脚注]
 ```
 
-### 类型
+#### 类型
 
 - `feat:`: 类型为 `feat` 的提交表示在代码库中新增了一个功能（这和语义化版本中的 [`MINOR`](https://link.juejin.cn?target=https%3A%2F%2Fsemver.org%2Flang%2Fzh-CN%2F%23%25E6%2591%2598%25E8%25A6%2581 "https://semver.org/lang/zh-CN/#%E6%91%98%E8%A6%81") 相对应）。
 - `fix:`：类型为 `fix` 的 提交表示在代码库中修复了一个 bug （这和语义化版本中的 [`PATCH`](https://link.juejin.cn?target=https%3A%2F%2Fsemver.org%2Flang%2Fzh-CN%2F%23%25E6%2591%2598%25E8%25A6%2581 "https://semver.org/lang/zh-CN/#%E6%91%98%E8%A6%81") 相对应）。
@@ -87,11 +104,11 @@ git log --name-status -- [filename/foldername]
 - `chore:`: 其他不修改`src`或`test`文件。
 - `revert:`: commit 回退。
 
-### 作用域
+#### 作用域
 
 可以为提交类型添加一个围在圆括号内的作用域，以为其提供额外的上下文信息。例如 `feat(parser): adds ability to parse arrays.`
 
-### 例子
+#### 例子
 
 ```shell
 # 包含作用域
@@ -104,3 +121,38 @@ see the issue for details on the typos fixed
 closes issue #12
 ```
 
+### git rm
+
+```shell
+# 放弃跟踪，但不删除文件
+git rm --cached [file url]
+```
+
+### git reset
+
++ 是最高效也是相对危险的指令
++ 直接修改 head 指针，未 push 的修改将被丢弃
+
+```shell
+# 危险，更改后，提交历史会被覆写
+git reset --hard origin/main
+# 撤销一次 commit，并使该 commit 回到暂存区
+git reset --soft HEAD~1
+
+# 撤销暂存区，使文件回到没有 git add 的状态
+git reset --mixed HEAD
+```
+
+### git restore
+
++ 相比 reset 更精确，可以具体到某一个文件的状态切换
++ 相比 reset 更安全
+
+```shell
+# 回到最后一次提交状态，仅影响指定文件，更安全
+git restore [filename]
+# 也可以操作暂存区，从暂存区中移除，但保留工作目录修改
+git restore --staged [filename]
+```
+
+### git revert
