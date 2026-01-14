@@ -1,3 +1,7 @@
+# RAG
+
+## Intro
+
 >你怎么能直接 client.chat.completions.create 去调大模型啊？！企业级 RAG 系统里不是这样！你应该先通过 ETL 流水线把 PDF 和 PPT 清洗一遍，跑一遍 OCR 和 Layout Analysis 提取图片里的图表信息。
 >
 >接着你要用 Recursive Character Text Splitter 按照语义完整性做 Chunking，并调用 CLIP 或者 BGE-M3 模型生成多模态 Embeddings。
@@ -9,4 +13,3 @@
 >等 Grounding Check 全部通过，并且没有触发 Sensitive Word Filter 之后，我才会考虑把 token 一个个 stream 推回给前端，等待用户反馈。你怎么直接上来就想裸调 API 靠模型瞎编？！
 >RAG 根本不是这样！我拒绝生成！
 
-![高松灯](https://i2.hdslb.com/bfs/archive/4c83534976e1d15db689da00bb712b6520ca7f0b.jpg@672w_378h_1c_!web-search-common-cover.avif)
