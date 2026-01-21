@@ -1,6 +1,7 @@
 # openSSH
 
-## 简介
+ #software #shell
+## 什么是 openSSH
   
 OpenSSH 是目前 Linux、macOS 和 Windows（WSL/PowerShell）上最常用的安全连接工具。它不仅用于远程登录，还涵盖了文件传输、端口转发等功能。
 ## 连接命令——ssh
@@ -45,6 +46,7 @@ ssh -D 1080 [user]@[host]
 ```
 
 >**tips：**
+>
 >可以结合 clash 的 rule 规则实现灵活的代理访问
 ## 文件传输命令——scp&sftp
 

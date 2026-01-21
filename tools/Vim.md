@@ -1,5 +1,8 @@
 # Vim
 
+#linux #software #shell
+## 什么是 Vim
+
 ## 基本快捷键
 
 + 删除某一行（剪切）：DD

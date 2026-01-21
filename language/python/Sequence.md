@@ -1,11 +1,12 @@
-# List
+# Sequence
+## List
+### attribute
 
-
-## attribute
-
-## function
+### function
 
 + 初始化列表长度
+	+ 通过乘法操作符
+	+ 通过列表推导式
 
 ```python
 # 通过乘法操作符
@@ -18,13 +19,15 @@ zero_list=[0 for _ in range(5)]
 
 + 切片
 
+切片是
+
 ```python
 # 切片可以灵活的取用列表中的连续的部分元素（子元素组）
 if(text.startswith(prefix)):
 	text=text[len(prefix):]
 ```
 
-+ 遍历
+### 遍历
 
 ```python
 # 使用索引
@@ -34,15 +37,20 @@ for i in range(len(my_list)):
 # 使用 enum，更加 pythonic
 for i,v in enumerate(my_list):
 	my_list[i]=v+1
+	
+# 防止出现多线程同步问题，一般这样写：
+for i,_ in enumerate(my_list):
+	my_list[i]+=1
 ```
 
-+ 排序
+### 排序
 
 基于 `list` 自带的实例方法 `sort()`
 
 通过 `key` 形参对列表进行排序，默认数字升序，字符串使用字典序（如果使用字符串作为 `key` 请一定要考虑这一点）
 
 > **tips：**
+> 
 > `key` 可以使用元组（Tuple）进行表达，元组中的顺序代表了 `key` 的优先级
 
 ```python
