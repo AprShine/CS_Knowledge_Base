@@ -1,3 +1,5 @@
+# file_type
+*.pdf
 # obsdian
 .obsidian/
 
